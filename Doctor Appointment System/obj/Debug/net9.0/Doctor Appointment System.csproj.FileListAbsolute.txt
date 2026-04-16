@@ -129,3 +129,6 @@ C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System
 C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
