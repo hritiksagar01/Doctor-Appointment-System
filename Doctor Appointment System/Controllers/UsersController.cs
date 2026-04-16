@@ -1,11 +1,13 @@
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Doctor_Appointment_System.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Roles = "Admin")]
 public class UsersController : ControllerBase
 {
     private readonly IUserService _service;
@@ -39,4 +41,3 @@ public class UsersController : ControllerBase
     public async Task<IActionResult> Delete(int id) =>
         await _service.DeleteAsync(id) ? NoContent() : NotFound();
 }
-

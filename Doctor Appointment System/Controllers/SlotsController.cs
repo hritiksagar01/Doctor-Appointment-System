@@ -1,5 +1,6 @@
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Doctor_Appointment_System.Controllers;
@@ -12,9 +13,11 @@ public class SlotsController : ControllerBase
     public SlotsController(ISlotService service) => _service = service;
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll() => Ok(await _service.GetAllAsync());
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> Get(int id)
     {
         var item = await _service.GetByIdAsync(id);
@@ -22,10 +25,12 @@ public class SlotsController : ControllerBase
     }
 
     [HttpGet("doctor/{doctorId}")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetByDoctor(int doctorId) =>
         Ok(await _service.GetByDoctorIdAsync(doctorId));
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(Slot slot)
     {
         var created = await _service.CreateAsync(slot);
@@ -33,6 +38,7 @@ public class SlotsController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(int id, Slot slot)
     {
         var updated = await _service.UpdateAsync(id, slot);
@@ -40,7 +46,7 @@ public class SlotsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id) =>
         await _service.DeleteAsync(id) ? NoContent() : NotFound();
 }
-

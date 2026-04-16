@@ -1,5 +1,6 @@
 using Doctor_Appointment_System.Models;
 using Doctor_Appointment_System.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Doctor_Appointment_System.Controllers;
@@ -12,9 +13,11 @@ public class DoctorsController : ControllerBase
     public DoctorsController(IDoctorService service) => _service = service;
 
     [HttpGet]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAll() => Ok(await _service.GetAllAsync());
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<IActionResult> Get(int id)
     {
         var item = await _service.GetByIdAsync(id);
@@ -22,6 +25,7 @@ public class DoctorsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(Doctor doctor)
     {
         var created = await _service.CreateAsync(doctor);
@@ -29,6 +33,7 @@ public class DoctorsController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(int id, Doctor doctor)
     {
         var updated = await _service.UpdateAsync(id, doctor);
@@ -36,7 +41,7 @@ public class DoctorsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int id) =>
         await _service.DeleteAsync(id) ? NoContent() : NotFound();
 }
-
