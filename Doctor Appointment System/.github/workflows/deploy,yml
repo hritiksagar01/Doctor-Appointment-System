@@ -1,0 +1,43 @@
+﻿name: Deploy .NET App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Build & Publish
+        run: |
+          dotnet restore
+          dotnet build -c Release
+          dotnet publish -c Release -o publish
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd /var/www/app
+
+            # Pull latest code
+            git pull origin main
+
+            # Build on server (safer)
+            dotnet publish -c Release -o out
+
+            # Restart app
+            sudo systemctl restart myapp
