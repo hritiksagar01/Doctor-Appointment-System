@@ -103,3 +103,4 @@ C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System
 C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\obj\Debug\net10.0\Doctor Appointment System.pdb
 C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\obj\Debug\net10.0\Doctor Appointment System.genruntimeconfig.cache
 C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\obj\Debug\net10.0\ref\Doctor Appointment System.dll
+C:\Users\hriti\RiderProjects\Doctor Appointment System\Doctor Appointment System\obj\Debug\net10.0\Doctor Appointment System.sourcelink.json
